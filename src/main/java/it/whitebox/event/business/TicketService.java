@@ -12,8 +12,8 @@ import it.whitebox.event.business.result.ListSubscriptionResponse;
 public interface TicketService {
 
 	public CreatePurchaseResponse createPurchase(Purchase purchase);
-	public ListPurchaseResponse listPurchase(Date startDate, Date endDate);
+	public ListPurchaseResponse listPurchases(Date startDate, Date endDate);
 	
 	public CreateSubscriptionResponse createSubscription(Subscription subscription);
-	public ListSubscriptionResponse listSubscription();
+	public ListSubscriptionResponse listSubscriptions();
 }

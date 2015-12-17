@@ -1,18 +1,26 @@
 package it.whitebox.event.frontend;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.whitebox.event.business.TicketService;
+import it.whitebox.event.business.TicketServiceImpl;
+import it.whitebox.event.business.domain.Purchase;
 import it.whitebox.event.business.domain.Subscription;
-import it.whitebox.event.business.domain.Ticket;
-import it.whitebox.event.frontend.response.CreateSubscriptionResponse;
-import it.whitebox.event.frontend.response.CreateTicketResponse;
+import it.whitebox.event.business.result.CreatePurchaseResponse;
+import it.whitebox.event.business.result.CreateSubscriptionResponse;
+import it.whitebox.event.business.result.ListPurchaseResponse;
+import it.whitebox.event.business.result.ListSubscriptionResponse;
+import it.whitebox.event.integration.db.PurchaseDao;
+import it.whitebox.event.integration.db.SubscriptionDao;
+import lombok.Setter;
 
 /**
  * REST controller for the TicketService
@@ -24,65 +32,35 @@ import it.whitebox.event.frontend.response.CreateTicketResponse;
 public class TicketRestServiceImpl {
 	
 	private static Logger log = Logger.getLogger(TicketRestServiceImpl.class);
+	
+	@Autowired @Setter
+	private TicketService ticketService; 
+	
 
-//	/**
-//	 * Creates a list of tickets
-//	 * @param ticketList
-//	 * @return
-//	 */
-//	@RequestMapping(value="/api/createTickets")
-//	public @ResponseBody CreateTicketResponse createTickets(
-//		List<Ticket> ticketList){
-//		log.info("createTickets(" + ticketList+")");
-//		return new CreateTicketResponse();
-//	}
-//	
-//	/**
-//	 * Lists the created tickets, given a start and end date
-//	 * 
-//	 * @param startDate
-//	 * @param endDate
-//	 * @return
-//	 */
-//	@RequestMapping(value="/api/listTickets")
-//	public List<Ticket> listTickets(
-//		Date startDate, Date endDate){
-//		log.info("listTickets(" + startDate + ", " + endDate +")");
-//		return new ArrayList<>();
-//	}
-//	
-//	/**
-//	 * Creates a list of subscriptions
-//	 * 
-//	 * @param subscriptionList
-//	 * @return
-//	 */
-//	@RequestMapping(value="/api/createSubscriptions")
-//	public CreateSubscriptionResponse createSubscriptions(
-//		List<Subscription> subscriptionList){
-//		log.info("createSubscriptions(" + subscriptionList +")");
-//		return new CreateSubscriptionResponse();
-//	}
-//	
-//	/**
-//	 * Returns a list of subscriptions given the progressive number
-//	 * 
-//	 * @param progressiveNumber
-//	 * @return
-//	 */
-//	@RequestMapping(value="/api/getSubscription")
-//	public List<Subscription> getSuscription(long progressiveNumber){
-//		log.info("getSubscription(" + progressiveNumber +")");
-//		return new ArrayList<>();		
-//	}
-//	
-//	/**
-//	 * Returns all the subscriptions
-//	 * @return
-//	 */
-//	@RequestMapping(value="/api/listSubscriptions")
-//	public List<Subscription> listSuscriptions(){
-//		log.info("listSubscriptions()");
-//		return new ArrayList<>();
-//	}
+	@RequestMapping(value="/api/purchase/create", method=RequestMethod.POST)
+	public @ResponseBody CreatePurchaseResponse createPurchase(Purchase purchase){
+		log.info("createPurchase(" + purchase+")");
+		return ticketService.createPurchase(purchase);
+	}
+	
+	@RequestMapping(value="/api/purchase/list", method=RequestMethod.GET)
+	public @ResponseBody ListPurchaseResponse listPurchases(
+		@DateTimeFormat(pattern="dd-MM-yyyy") Date startDate, 
+		@DateTimeFormat(pattern="dd-MM-yyyy") Date endDate){
+		log.info("listPurchase(" + startDate + " > " + endDate + ")");
+		return ticketService.listPurchases(startDate, endDate);
+	}
+	
+	@RequestMapping(value="/api/subscription/create", method=RequestMethod.POST)
+	public @ResponseBody CreateSubscriptionResponse createSubscription(Subscription subscription){
+		log.info("createSubscription(" + subscription+")");
+		return ticketService.createSubscription(subscription);
+	}
+	
+	@RequestMapping(value="/api/subscription/list", method=RequestMethod.GET)
+	public @ResponseBody ListSubscriptionResponse listSubscriptions(){
+		log.info("listSubscription()");
+		return ticketService.listSubscriptions();
+	}
+
 }

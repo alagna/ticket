@@ -35,12 +35,12 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public ListPurchaseResponse listPurchase(Date startDate, Date endDate) {
+	public ListPurchaseResponse listPurchases(Date startDate, Date endDate) {
 		return new ListPurchaseResponse(purchaseDao.findByDate(startDate, endDate));
 	}
 
 	@Override
-	public ListSubscriptionResponse listSubscription() {
+	public ListSubscriptionResponse listSubscriptions() {
 		return new ListSubscriptionResponse(subscriptionDao.findAll());
 	}
 	
