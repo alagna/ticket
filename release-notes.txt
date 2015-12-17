@@ -1,0 +1,12 @@
+----------------------------------
+TICKET SERVER release notes
+----------------------------------
+
+todo
+------
+- add the Purchase, Discount and Revenue concepts 
+
+
+v0.0.1 build 
+-----------------------------
+
