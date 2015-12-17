@@ -16,4 +16,7 @@
     -->
     <mvc:default-servlet-handler/>
 	
+	<!-- Configures Spring Data JPA and sets the base package of my DAOs. -->
+    <jpa:repositories base-package="it.whitebox.event.integration.db"/>
+	
 </beans>

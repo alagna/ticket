@@ -27,7 +27,7 @@ import com.jolbox.bonecp.BoneCPDataSource;
  *
  */
 @Configuration
-@ComponentScan(basePackages = {"it.whitebox"})
+@ComponentScan(basePackages = {"it.whitebox.event"})
 @EnableWebMvc
 @ImportResource("classpath:applicationContext.xml")
 @PropertySource("classpath:ticket.properties")
