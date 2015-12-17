@@ -8,6 +8,8 @@ todo
 
 - use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
 - better define SmNamingStrategy
+- refine GlobalExceptionHandler
+- merge PurchaseDao and PurchaseDaoCustom in one DAO, deriving PurchaseDao from PurchaseDaoCustom
 
 v0.0.1 build 
 -----------------------------

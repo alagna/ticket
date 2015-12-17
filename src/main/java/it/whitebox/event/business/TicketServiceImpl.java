@@ -1,6 +1,7 @@
 package it.whitebox.event.business;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import it.whitebox.event.business.result.CreateSubscriptionResponse;
 import it.whitebox.event.business.result.ListPurchaseResponse;
 import it.whitebox.event.business.result.ListSubscriptionResponse;
 import it.whitebox.event.integration.db.PurchaseDao;
+import it.whitebox.event.integration.db.PurchaseDaoCustom;
 import it.whitebox.event.integration.db.SubscriptionDao;
 import lombok.Setter;
 
@@ -20,6 +22,9 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Autowired @Setter
 	private PurchaseDao purchaseDao;
+
+	@Autowired @Setter
+	private PurchaseDaoCustom purchaseDaoCustom;
 
 	@Autowired @Setter
 	private SubscriptionDao subscriptionDao;
@@ -36,7 +41,10 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public ListPurchaseResponse listPurchases(Date startDate, Date endDate) {
-		return new ListPurchaseResponse(purchaseDao.findByDate(startDate, endDate));
+		
+		List<Purchase> purchaseList = purchaseDaoCustom.findByDate(startDate, endDate);
+		
+		return new ListPurchaseResponse(purchaseList);
 	}
 
 	@Override

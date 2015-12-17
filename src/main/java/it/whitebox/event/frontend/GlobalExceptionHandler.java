@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controller that captures all exceptions TODO refine
+ * Controller that captures all exceptions 
  * 
  * @author alberto.lagna@whitebox.it
  */
@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler()
 	public ModelAndView myError(Exception exception) {
-		log.error("Error: " + exception.getMessage(), exception);
+		log.error("Error: " + exception.getClass().getSimpleName() + " " + exception.getMessage(), exception);
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("exception", exception);
