@@ -1,6 +1,13 @@
 package it.whitebox.event.business.domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Entity (as in DDD)
@@ -8,7 +15,12 @@ import lombok.Data;
  * @author alberto.lagna@whitebox.it
  *
  */
-@Data
+@Data @NoArgsConstructor
+@MappedSuperclass
 public abstract class BusinessEntity {
-	private Long id;
+
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	private String id;
 }

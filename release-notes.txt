@@ -6,6 +6,8 @@ todo
 ------
 - add the Purchase, Discount and (Revenue) concepts 
 
+- use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
+- better define SmNamingStrategy
 
 v0.0.1 build 
 -----------------------------

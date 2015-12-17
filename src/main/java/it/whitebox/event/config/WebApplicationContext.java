@@ -20,8 +20,7 @@ public class WebApplicationContext implements WebApplicationInitializer {
 	private static final String DISPATCHER_SERVLET_MAPPING = "/";
 
 	@Override
-	public void onStartup(ServletContext servletContext)
-			throws ServletException {
+	public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
 		rootContext.register(MainApplicationContext.class);
 
