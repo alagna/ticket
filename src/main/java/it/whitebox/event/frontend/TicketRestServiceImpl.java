@@ -51,7 +51,8 @@ public class TicketRestServiceImpl {
 	}
 	
 	@RequestMapping(value="/api/subscription", method=RequestMethod.POST)
-	public @ResponseBody CreateSubscriptionResponse createSubscription(Subscription subscription){
+	public @ResponseBody CreateSubscriptionResponse createSubscription(
+		@RequestBody Subscription subscription){
 		log.info("createSubscription(" + subscription+")");
 		return ticketService.createSubscription(subscription);
 	}

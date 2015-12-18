@@ -2,7 +2,9 @@ package it.whitebox.event.business.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
@@ -28,6 +30,6 @@ public class Subscription extends BusinessEntity {
 	private Date date;
 	private long progressiveNumber;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Subscriber subscriber;
 }

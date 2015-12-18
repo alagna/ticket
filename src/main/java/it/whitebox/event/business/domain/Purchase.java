@@ -34,7 +34,6 @@ public class Purchase extends BusinessEntity {
 	@ManyToOne
 	private Discount discount;
 	
-	// TODO remove cascade={CascadeType.ALL (for the time being only for test purposes)
 	@OneToMany (cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
 	private List<Ticket> ticketList = new ArrayList<>();
 }
