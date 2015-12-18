@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,4 +27,7 @@ public class Subscription extends BusinessEntity {
 	
 	private Date date;
 	private long progressiveNumber;
+	
+	@OneToOne
+	private Subscriber subscriber;
 }

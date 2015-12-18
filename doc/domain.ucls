@@ -4,7 +4,7 @@
   <class id="1" language="java" name="it.whitebox.event.business.domain.Subscription" project="ticket" 
     file="/ticket/src/main/java/it/whitebox/event/business/domain/Subscription.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="653" y="527"/>    
+    <position height="-1" width="-1" x="653" y="511"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="it.whitebox.event.business.domain.Subscriber" project="ticket" 
     file="/ticket/src/main/java/it/whitebox/event/business/domain/Subscriber.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="658" y="374"/>    
+    <position height="-1" width="-1" x="645" y="331"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   </class>  
   <class id="3" language="java" name="it.whitebox.event.business.domain.Ticket" project="ticket" 
     file="/ticket/src/main/java/it/whitebox/event/business/domain/Ticket.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="393" y="366"/>    
+    <position height="-1" width="-1" x="396" y="513"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -32,7 +32,7 @@
   <class id="4" language="java" name="it.whitebox.event.business.domain.BusinessEntity" project="ticket" 
     file="/ticket/src/main/java/it/whitebox/event/business/domain/BusinessEntity.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="412" y="98"/>    
+    <position height="-1" width="-1" x="465" y="51"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -41,7 +41,7 @@
   </class>  
   <class id="5" language="java" name="it.whitebox.event.business.domain.Service" project="ticket" 
     file="/ticket/src/main/java/it/whitebox/event/business/domain/Service.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="140" y="372"/>    
+    <position height="-1" width="-1" x="143" y="519"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -50,7 +50,7 @@
   </class>  
   <class id="6" language="java" name="it.whitebox.event.business.domain.Purchase" project="ticket" 
     file="/ticket/src/main/java/it/whitebox/event/business/domain/Purchase.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="289" y="232"/>    
+    <position height="-1" width="-1" x="292" y="379"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -59,7 +59,7 @@
   </class>  
   <class id="7" language="java" name="it.whitebox.event.business.domain.Discount" project="ticket" 
     file="/ticket/src/main/java/it/whitebox/event/business/domain/Discount.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="129" width="169" x="585" y="119"/>    
+    <position height="-1" width="-1" x="287" y="196"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -73,73 +73,76 @@
   <association id="9">    
     <end type="SOURCE" refId="6" navigable="false">      
       <attribute id="10" name="ticketList">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="3" y="147"/>      
       </attribute>      
       <multiplicity id="11" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="3" y="147"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="12">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="13" name="discount"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="13" name="subscription"/>      
       <multiplicity id="14" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="15">    
-    <bendpoint x="179" y="101"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="16">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="17" name="subscription">        
-        <position height="0" width="0" x="26" y="73"/>      
-      </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
-        <position height="0" width="0" x="26" y="73"/>      
-      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="20">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="21" name="subscriber">        
-        <position height="0" width="0" x="29" y="70"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="29" y="70"/>      
-      </multiplicity>    
+  <association id="15">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="16" name="discount"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="18">    
+    <bendpoint x="618" y="431"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="subscriber"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="23">    
+  <generalization id="21">    
+    <bendpoint x="134" y="102"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="23">    
+    <bendpoint x="694" y="430"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="24" name="subscription"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="26">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="24">    
+  <association id="27">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="25" name="service">        
-        <position height="0" width="0" x="-44" y="70"/>      
+      <attribute id="28" name="service">        
+        <position height="0" width="0" x="-41" y="217"/>      
       </attribute>      
-      <multiplicity id="26" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-44" y="70"/>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-41" y="217"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="27">    
+  <generalization id="30">    
+    <bendpoint x="394" y="269"/>    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  

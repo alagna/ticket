@@ -28,10 +28,10 @@ public class JsonMarshaller {
 	
 	public void marshall(){
 		Discount d = new Discount("discount", "disc desc", 12.33, 1.02);
-		Subscription subscription = new Subscription(new Date(), 1);
-		Subscriber subscriber = new Subscriber("Mario", "Rossi", new Date(), "123", subscription);
+		Subscriber subscriber = new Subscriber("Mario", "Rossi", new Date(), "123", null);
+		Subscription subscription = new Subscription(new Date(), 1, subscriber);
 		Service svc = new Service("service name", 12.33);
-		Ticket t = new Ticket(new Date(), "goofy", subscriber, svc);
+		Ticket t = new Ticket(new Date(), "goofy", subscription, svc);
 		
 		Purchase p = new Purchase(new Date(), 123.33, d, new ArrayList<Ticket>()); 
 		p.getTicketList().add(t);
