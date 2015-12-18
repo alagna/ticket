@@ -6,6 +6,8 @@ todo
 ------
 - add the Purchase, Discount and (Revenue) concepts 
 
+- manage Subscription.progressiveNumber
+
 - use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
 - better define SmNamingStrategy
 - refine GlobalExceptionHandler

@@ -5,21 +5,19 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.whitebox.event.business.TicketService;
-import it.whitebox.event.business.TicketServiceImpl;
 import it.whitebox.event.business.domain.Purchase;
 import it.whitebox.event.business.domain.Subscription;
 import it.whitebox.event.business.result.CreatePurchaseResponse;
 import it.whitebox.event.business.result.CreateSubscriptionResponse;
 import it.whitebox.event.business.result.ListPurchaseResponse;
 import it.whitebox.event.business.result.ListSubscriptionResponse;
-import it.whitebox.event.integration.db.PurchaseDao;
-import it.whitebox.event.integration.db.SubscriptionDao;
 import lombok.Setter;
 
 /**
@@ -37,8 +35,9 @@ public class TicketRestServiceImpl {
 	private TicketService ticketService; 
 	
 
-	@RequestMapping(value="/api/purchase/create", method=RequestMethod.POST)
-	public @ResponseBody CreatePurchaseResponse createPurchase(Purchase purchase){
+	@RequestMapping(value="/api/purchase", method=RequestMethod.POST)
+	public @ResponseBody CreatePurchaseResponse createPurchase(
+		@RequestBody Purchase purchase){
 		log.info("createPurchase(" + purchase+")");
 		return ticketService.createPurchase(purchase);
 	}
@@ -51,7 +50,7 @@ public class TicketRestServiceImpl {
 		return ticketService.listPurchases(startDate, endDate);
 	}
 	
-	@RequestMapping(value="/api/subscription/create", method=RequestMethod.POST)
+	@RequestMapping(value="/api/subscription", method=RequestMethod.POST)
 	public @ResponseBody CreateSubscriptionResponse createSubscription(Subscription subscription){
 		log.info("createSubscription(" + subscription+")");
 		return ticketService.createSubscription(subscription);

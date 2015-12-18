@@ -7,8 +7,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * Subscription to a service
@@ -19,6 +21,7 @@ import lombok.EqualsAndHashCode;
 @Entity @Table(name = "tckt_t_subscription")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Data @EqualsAndHashCode(callSuper=false)
+@NoArgsConstructor @AllArgsConstructor
 public class Subscription extends BusinessEntity {
 	
 	private Date date;

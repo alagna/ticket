@@ -8,8 +8,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * Ticket, object of a Purchase
@@ -19,7 +21,8 @@ import lombok.EqualsAndHashCode;
  */
 @Entity @Table(name = "tckt_t_ticket")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Data @EqualsAndHashCode(callSuper=false)
+@Data @EqualsAndHashCode(callSuper=false) 
+@AllArgsConstructor @NoArgsConstructor
 public class Ticket extends BusinessEntity {
 
 	private Date date;
