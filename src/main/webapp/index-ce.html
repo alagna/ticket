@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/libs/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="./assets/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="./assets/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="currencyApp" ng-controller="currencyCtrl" class="container">
+	<div class="page-header">
+		<h1>Currency Exchange Rate publishing server</h1>
+		<p class="lead">User Console</p>
+	</div>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#tab1">Search Exchange Rate</a></li>
+		<li><a data-toggle="tab" href="#tab2">List Exchange Rates</a></li>
+		<li><a data-toggle="tab" href="#tab3">Convert</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="tab1" class="tab-pane fade in active">
+			<h3>Insert one currency code and press "Search"</h3>
+			<form>
+				<div class="form-group">
+					<label for="currencyCode">Currency code</label>
+					<input type="text" class="form-control" ng-model="currencyCode" placeholder="Currency code">
+				</div>
+				<button ng-hide="waitSingleSearch" ng-click="singleSearch()" class="btn btn-primary">Search</button>
+			</form>
+			<div ng-show="execSingleSearch" class="resultBox">
+				<div ng-show="waitSingleSearch" class="alert alert-info">Waiting for search result ...</div>
+				<div ng-hide="waitSingleSearch" class="table-responsive">          
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Currency code</th>
+								<th>Currency name</th>
+								<th>Exchange rate</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{currencyExchange.code}}</td>
+								<td>{{currencyExchange.name}}</td>
+								<td>{{currencyExchange.rate}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="tab2" class="tab-pane fade">
+			<h3>Insert a list of comma-separated currency codes and press "Search"</h3>
+			<form>
+				<div class="form-group">
+					<label for="currencyCodes">Currency code(s)</label>
+					<input type="text" class="form-control" ng-model="currencyCodes" placeholder="Currency code(s)">
+				</div>
+				<button ng-hide="waitMultiSearch" ng-click="multiSearch()" class="btn btn-primary">Search</button>
+			</form>
+			<div ng-show="execMultiSearch" class="resultBox">
+				<div ng-show="waitMultiSearch" class="alert alert-info">Waiting for search result ...</div>
+				<div ng-hide="waitMultiSearch" class="table-responsive">          
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Currency code</th>
+								<th>Currency name</th>
+								<th>Exchange rate</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="cur in currencyExchanges">
+								<td>{{$index + 1}}</td>
+								<td>{{cur.code}}</td>
+								<td>{{cur.name}}</td>
+								<td>{{cur.rate}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="tab3" class="tab-pane fade">
+			<h3>Insert source currency, target currency, source amount and press "Convert"</h3>
+			<form>
+				<div class="form-group">
+					<label for="sourceCurrencyCode">Source currency code</label>
+					<input type="text" class="form-control" ng-model="sourceCurrencyCode" placeholder="Currency code">
+				</div>
+				<div class="form-group">
+					<label for="targetCurrencyCode">Target currency code</label>
+					<input type="text" class="form-control" ng-model="targetCurrencyCode" placeholder="Currency code">
+				</div>
+				<div class="form-group">
+					<label for="amount">Amount</label>
+					<input type="text" class="form-control" ng-model="amount" placeholder="Amount">
+				</div>
+				<button ng-hide="waitConvert" ng-click="convert()" class="btn btn-primary">Convert</button>
+			</form>
+			<div ng-show="execConvert" class="resultBox">
+				<div ng-show="waitConvert" class="alert alert-info">Waiting for result ...</div>
+				<div ng-hide="waitConvert" class="table-responsive">          
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Source currency</th>
+								<th>Target currency</th>
+								<th>Source amount</th>
+								<th>Target amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>{{conversion.sourceCurrencyCode}}</th>
+								<th>{{conversion.targetCurrencyCode}}</th>
+								<th>{{conversion.amount}}</th>
+								<th>{{conversion.targetAmount}}</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr/>
+	<a href="codes.html"  onclick="window.open('codes.html', 'newwindow', 'width=300, height=500, scrollbars=yes'); return false;">Currency codes</a>
+</div>
+<script src="./assets/js/currencyModule.js"></script>
+</body>
+</html>
