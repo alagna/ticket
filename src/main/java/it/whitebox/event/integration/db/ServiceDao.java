@@ -11,5 +11,5 @@ import it.whitebox.event.business.domain.Service;
  * @author alberto.lagna@whitebox.it
  */
 public interface ServiceDao 
-	extends JpaRepository<Service, String>, 
+	extends JpaRepository<Service, Long>, 
 	JpaSpecificationExecutor<Service>{}

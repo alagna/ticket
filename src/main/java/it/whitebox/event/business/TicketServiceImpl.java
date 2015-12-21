@@ -22,6 +22,11 @@ import it.whitebox.event.integration.db.ServiceDao;
 import it.whitebox.event.integration.db.SubscriptionDao;
 import lombok.Setter;
 
+/**
+ * Implementation of the TicketService
+ * 
+ * @author alberto.lagna@whitebox.it
+ */
 @Service
 @Transactional
 public class TicketServiceImpl implements TicketService {
@@ -48,8 +53,8 @@ public class TicketServiceImpl implements TicketService {
 	 */
 	@Override
 	public CreatePurchaseResponse createPurchase(Purchase purchase) {
+		
 		// adding relationship Ticket-Service and calculating the price
-
 		double totalAmount = 0.0;
 		for (Iterator<Ticket> i=purchase.getTicketList().iterator(); i.hasNext();) {
 			Ticket ticket = i.next();
@@ -64,9 +69,15 @@ public class TicketServiceImpl implements TicketService {
 			}
 			Subscription subscription = ticket.getSubscription();
 			if (subscription!=null){
-				// TODO find subscription
-//				subscriptionDao.findOne(arg0)
-				// TODO calculate discount and apply it
+				Subscription savedSubscription = subscriptionDao.findOne(subscription.getId());
+				if (savedSubscription!=null){
+					ticket.setBuyerName(savedSubscription.getSubscriber().getFirstName() + " " +  
+							savedSubscription.getSubscriber().getLastName());
+					// TODO apply Discount, instead of calculating it directly
+					totalAmount -= 1;
+				} else {
+					log.error("subscription " + subscription.getId() + " not found: not applied discount");					
+				}
 			}
 		}
 		

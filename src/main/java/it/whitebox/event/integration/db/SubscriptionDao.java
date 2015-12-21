@@ -10,7 +10,7 @@ import it.whitebox.event.business.domain.Subscription;
  * 
  * @author alberto.lagna@whitebox.it
  */
-public interface SubscriptionDao extends JpaRepository<Subscription, String>, 
+public interface SubscriptionDao extends JpaRepository<Subscription, Long>, 
 	JpaSpecificationExecutor<Subscription>{
 
 }

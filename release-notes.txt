@@ -4,15 +4,14 @@ TICKET SERVER release notes
 
 todo
 ------
-- add the Purchase, Discount and (Revenue) concepts 
-
-- manage Subscription.progressiveNumber
-
 - use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
 - better define SmNamingStrategy
 - refine GlobalExceptionHandler
 - merge PurchaseDao and PurchaseDaoCustom in one DAO, deriving PurchaseDao from PurchaseDaoCustom
+- TicketServiceImpl for Subscription apply Discount, instead of calculating it directly
 
 v0.0.1 build 
 -----------------------------
+- added the Purchase, Discount and (Revenue) concepts 
+- managed Subscription.progressiveNumber
 

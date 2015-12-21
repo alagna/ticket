@@ -29,7 +29,7 @@ public class JsonMarshaller {
 	public void marshall(){
 		Discount d = new Discount("discount", "disc desc", 12.33, 1.02);
 		Subscriber subscriber = new Subscriber("Mario", "Rossi", new Date(), "123", null);
-		Subscription subscription = new Subscription(new Date(), 1, subscriber);
+		Subscription subscription = new Subscription(new Date(), subscriber);
 		Service svc = new Service("service name", 12.33);
 		Ticket t = new Ticket(new Date(), "goofy", subscription, svc);
 		

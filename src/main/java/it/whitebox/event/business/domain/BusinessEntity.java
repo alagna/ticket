@@ -4,8 +4,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +18,11 @@ import lombok.NoArgsConstructor;
 public abstract class BusinessEntity {
 
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
-	protected String id;
+//	@GeneratedValue(generator = "uuid")
+//	@GenericGenerator(name = "uuid", strategy = "uuid2")
+//	protected String id;
+	@GeneratedValue
+	protected Long id;
+	
+	
 }

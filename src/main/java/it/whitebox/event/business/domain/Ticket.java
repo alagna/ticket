@@ -27,7 +27,7 @@ public class Ticket extends BusinessEntity {
 
 	private Date date;
 	private String buyerName;
-	
+
 	@ManyToOne
 	private Subscription subscription;
 	

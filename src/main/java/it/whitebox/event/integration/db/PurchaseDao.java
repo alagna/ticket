@@ -11,5 +11,5 @@ import it.whitebox.event.business.domain.Purchase;
  * @author alberto.lagna@whitebox.it
  */
 public interface PurchaseDao 
-	extends JpaRepository<Purchase, String>, 
+	extends JpaRepository<Purchase, Long>, 
 	JpaSpecificationExecutor<Purchase>{}
