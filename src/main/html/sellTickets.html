@@ -4,10 +4,10 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="../webapp/assets/img/favicon.ico">
-	<link rel="stylesheet" href="../webapp/assets/libs/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./assets/libs/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../webapp/assets/css/style.css">
 	<script src="../webapp/assets/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="../webapp/assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="./assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="../webapp/assets/libs/angularjs/1.3.14/angular.min.js"></script>
 	<script src="./assets/libs/csi/csi.min.js"></script>
 	<title>Biglietti: Vendita</title>
@@ -18,29 +18,34 @@
 
 		<div data-include="include/navbar.html"></div>
 
-		<!-- Input field -->
+		<!-- Input form -->
 		<form class="form-inline">
-			<div class="row form-group">
-				<select id="ticketKind" class="form-control">
-					<option>giornaliero</option>
-					<option>mattutino</option>
-					<option>pomeridiano</option>
-					<option>tapis roulant</option>
-					<option>fondo</option>
-				</select> 
-				<input type="text" class="form-control" id="subscriptionNum" placeholder="Abbonamento n."> 
-				<input type="text" class="form-control" id="firstLastName" placeholder="Nome e Cognome">
-				<button type="button" class="btn add-more">
-					<span class="glyphicon glyphicon-plus-sign"></span>
-				</button>
+			<div class="container-fluid">
+				<div class="row form-group">
+					<select id="ticketKind" class="form-control">
+						<option>giornaliero</option>
+						<option>mattutino</option>
+						<option>pomeridiano</option>
+						<option>tapis roulant</option>
+						<option>fondo</option>
+					</select> 
+					<input type="text" class="form-control" id="subscriptionNum" placeholder="Abbonamento n."> 
+					<input type="text" class="form-control" id="firstLastName" placeholder="Nome e Cognome">
+					<button type="button" class="btn add-more">
+						<span class="glyphicon glyphicon-plus-sign"></span>
+					</button>
+				</div>
 			</div>
 			<hr>
 			<div>
-				<button type="button" class="btn btn-default">Acquista</button>
+				<button type="button" class="btn btn-default">Completa vendita</button>
 				<button type="button" class="btn btn-default">Cancella</button>
 			</div>
 		</form>
 		<hr>
+		
+		<!-- Result -->
+		<div data-include="include/resultSellTicket.html"></div>
 		
 	</div>
 
