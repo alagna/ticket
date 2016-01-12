@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="sellSubscriptionsApp">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="./assets/img/favicon.ico">
+	<link rel="stylesheet" href="./assets/libs/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<script src="./assets/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="./assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="./assets/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script>
+		var ticketApp = angular.module("sellSubscriptionsApp", []);
+	</script>
+	<title>Abbonamenti: Vendita</title>
+</head>
+
+<body>
+	<div class="container">
+
+		<div ng-include="'include/navbar.html'"></div>
+
+		<!-- Input Form -->
+		<form class="form-inline">
+			<div class="container-fluid">
+				<div class="row form-group">
+					<input type="text" class="form-control" id="firstName" placeholder="Nome"> 
+					<input type="text" class="form-control" id="lastName" placeholder="Cognome"> 
+				</div>
+			</div>
+			<hr>
+			<div>
+				<button type="button" class="btn btn-default">Completa vendita</button>
+				<button type="button" class="btn btn-default">Cancella</button>
+			</div>
+			<hr>
+		</form>
+		
+		<!-- Result -->
+		<div ng-include="'include/resultSellSubscription.html'"></div>
+	
+	</div> <!-- /container -->
+
+</body>
+</html>
