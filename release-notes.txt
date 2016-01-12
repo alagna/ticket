@@ -14,8 +14,9 @@ Backend
 Frontend 
 - use timepicker in listTickets.html
 
-v0.0.1 build 
+v0.0.1: before angularJS
 -----------------------------
+Backend:
 - implemented progressiveNumber on Ticket (automatically calculated) and on Subscription
 (automatically calculated if not set)
 - il biglietto accompagnatore mettiamo 2 euro
