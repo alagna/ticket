@@ -130,6 +130,7 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public CreateSubscriptionResponse createSubscription(Subscription subscription) {
 		subscription = setProgressiveNumber(subscription);
+		subscription.setDate(new Date());
 		return new CreateSubscriptionResponse(subscriptionDao.save(subscription));
 	}
 

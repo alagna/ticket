@@ -21,7 +21,7 @@
 		<div ng-include="'include/navbar.html'"></div>
 
 		<!-- Input form -->
-		<form class="form-inline">
+		<form name="inputForm" class="form-inline">
 			<div class="container-fluid">
 				<div class="row form-group">
 					<select id="ticketKind" class="form-control">
@@ -32,8 +32,10 @@
 						<option>accompagnatore tapis roulant</option>
 						<option>fondo</option>
 					</select> 
-					<input type="text" class="form-control" id="subscriptionNum" placeholder="Abbonamento n."> 
-					<input type="text" class="form-control" id="firstLastName" placeholder="Nome e Cognome">
+					<input type="text" class="form-control" 
+						id="subscriptionNum" placeholder="Abbonamento n."> 
+					<input type="text" class="form-control" 
+						id="firstLastName" placeholder="Nome e Cognome">
 					<button type="button" class="btn add-more">
 						<span class="glyphicon glyphicon-plus-sign"></span>
 					</button>

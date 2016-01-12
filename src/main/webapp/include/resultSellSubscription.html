@@ -4,16 +4,16 @@
 				<table class="table table-hover table-bordered">
 					<thead style="white-space: nowrap; max-width: none; width: auto;">
 						<tr>
-							<th class="col-sm-2">Data e ora</th>
+							<th class="col-sm-1">Data e ora</th>
 							<th class="col-sm-1">Numero Abbonamento</th>
-							<th class="col-sm-2">Nome e Cognome</th>
+							<th class="col-sm-4">Nome e Cognome</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>22/11/2014 15:30</td>
-							<td>12</td>
-							<td>Mario Rossi</td>
+							<td>{{subscription.date}}</td>
+							<td>{{subscription.progressiveNumber}}</td>
+							<td>{{subscription.subscriber.firstName + " " + subscription.subscriber.lastName}}</td>
 						</tr>
 					</tbody>
 				</table>
