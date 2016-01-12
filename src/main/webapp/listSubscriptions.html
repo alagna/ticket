@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="listSubscriptionApp">
+<html ng-app="listSubscriptionsApp">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,21 +9,20 @@
 	<script src="./assets/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="./assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="./assets/libs/angularjs/1.3.14/angular.min.js"></script>
-	<script>
-		var ticketApp = angular.module("listSubscriptionApp", []);
-	</script>
+	<script src="./assets/js/listSubscriptionsModule.js"></script>
 	<title>Abbonamenti: Elenco venduti</title>
 </head>
 
 <body>
-	<div class="container">
+	<div ng-controller="listSubscriptionsCtrl as main" class="container">
 
 		<div ng-include="'include/navbar.html'"></div>
 
 		<!-- Input Form -->
 		<form class="form-inline">
 			<div>
-				<button type="button" class="btn btn-default">Elenca abbonamenti</button>
+				<button type="button" ng-click="listSubscriptions()" 
+					class="btn btn-default">Elenca abbonamenti</button>
 			</div>
 		</form>
 		<hr>
