@@ -26,7 +26,9 @@ import lombok.NoArgsConstructor;
 public class Ticket extends BusinessEntity {
 
 	private Date date;
+	private String printDay;
 	private String buyerName;
+	private String progressiveNumber;
 
 	@ManyToOne
 	private Subscription subscription;

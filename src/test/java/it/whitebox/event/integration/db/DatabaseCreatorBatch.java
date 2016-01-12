@@ -35,9 +35,7 @@ public class DatabaseCreatorBatch extends BaseJunit4TestCase{
 		serviceDao.save(new Service("Pomeridiano", 8.00));
 		serviceDao.save(new Service("Tapis Roulant", 6.00));
 		serviceDao.save(new Service("Fondo", 3.00));
-
-		
-		
+		serviceDao.save(new Service("Accompagnatore", 2.00));		
 	}
 
 }
