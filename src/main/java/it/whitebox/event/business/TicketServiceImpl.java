@@ -59,7 +59,7 @@ public class TicketServiceImpl implements TicketService {
 	 * @param purchase
 	 * @return
 	 */
-	@Override
+	@Override @Transactional
 	public CreatePurchaseResponse createPurchase(Purchase purchase) {
 		
 		// adding relationship Ticket-Service and calculating the price
@@ -70,6 +70,7 @@ public class TicketServiceImpl implements TicketService {
 			it.whitebox.event.business.domain.Service service = 
 				serviceDao.findOne(ticket.getService().getId());
 			ticket = setProgressiveNumber(ticket);
+			ticket.setId(null);
 			if (service!=null){
 				ticket.setService(service);
 				ticket.setCalculatedPrice(service.getPrice());
@@ -84,15 +85,34 @@ public class TicketServiceImpl implements TicketService {
 			// manage subscription (if there's one)
 			Subscription subscription = ticket.getSubscription();
 			if (subscription!=null){
-				Subscription savedSubscription = subscriptionDao.findOne(subscription.getId());
-				if (savedSubscription!=null){
-					ticket.setBuyerName(savedSubscription.getSubscriber().getFirstName() + " " +  
-							savedSubscription.getSubscriber().getLastName());
+				
+				List<Subscription> savedSubscriptionList = 
+					subscriptionDao.findByProgressiveNumber(subscription.getProgressiveNumber());
+				boolean applyDiscount = false;
+				
+				// subscription progressiveNumber exists
+				if (savedSubscriptionList.size()>0){
+					Subscription savedSubscription = savedSubscriptionList.get(0);
+					
+					String subscriberFirstLastName = 
+						savedSubscription.getSubscriber().getFirstName() + " " + savedSubscription.getSubscriber().getLastName();
+					// subscriber and buyer name matches
+					if (ticket.getBuyerName().toLowerCase().equals(subscriberFirstLastName.toLowerCase())) {
+						ticket.setSubscription(savedSubscription);
+						ticket.setBuyerName(savedSubscription.getSubscriber().getFirstName() + " " +  
+								savedSubscription.getSubscriber().getLastName());
+						applyDiscount=true;
+					}
+				} 
+				
+				if (applyDiscount) {
 					// TODO apply Discount, instead of calculating it directly
 					totalAmount -= DISCOUNT_FOR_SUBSCRIPTION;
 					ticket.setCalculatedPrice(ticket.getCalculatedPrice()-DISCOUNT_FOR_SUBSCRIPTION);
 				} else {
-					log.error("subscription " + subscription.getId() + " not found: not applied discount");					
+					ticket.setSubscription(null);
+					log.error("subscription " + subscription.getProgressiveNumber() + 
+						" not found or doesn't match: not applied discount");					
 				}
 			}
 		}

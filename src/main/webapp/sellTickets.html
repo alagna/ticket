@@ -9,48 +9,85 @@
 	<script src="./assets/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="./assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="./assets/libs/angularjs/1.3.14/angular.min.js"></script>
-	<script>
-		var ticketApp = angular.module("sellTicketsApp", []);
-	</script>
+	<script src="./assets/js/sellTicketsModule.js"></script>
 	<title>Biglietti: Vendita</title>
 </head>
 
 <body>
-	<div class="container">
+	<div ng-controller="sellTicketsCtrl as main" class="container">
 
 		<div ng-include="'include/navbar.html'"></div>
 
 		<!-- Input form -->
 		<form name="inputForm" class="form-inline">
 			<div class="container-fluid">
-				<div class="row form-group">
-					<select id="ticketKind" class="form-control">
-						<option>giornaliero</option>
-						<option>mattutino</option>
-						<option>pomeridiano</option>
-						<option>tapis roulant</option>
-						<option>accompagnatore tapis roulant</option>
-						<option>fondo</option>
+			
+				<div ng-repeat="ticket in ticketList" class="row form-group">
+					<select id="ticketKind" ng-model="ticket.service.id" class="form-control">
+						<option value="1">giornaliero</option>
+						<option value="2">mattutino</option>
+						<option value="3">pomeridiano</option>
+						<option value="4">tapis roulant</option>
+						<option value="6">accompagnatore tapis roulant</option>
+						<option value="5">fondo</option>
 					</select> 
-					<input type="text" class="form-control" 
-						id="subscriptionNum" placeholder="Abbonamento n."> 
-					<input type="text" class="form-control" 
+					<input type="text" ng-model="ticket.subscription.progressiveNumber" class="form-control" 
+						id="subscriptionNum" placeholder="Tessera n."> 
+					<input type="text" ng-model="ticket.buyerName" class="form-control" 
 						id="firstLastName" placeholder="Nome e Cognome">
-					<button type="button" class="btn add-more">
-						<span class="glyphicon glyphicon-plus-sign"></span>
-					</button>
-				</div>
+					
+				</div><!-- row -->
+				
 			</div>
 			<hr>
 			<div>
-				<button type="button" class="btn btn-default">Completa vendita</button>
-				<button type="button" class="btn btn-default">Cancella</button>
+				<button type="button" ng-click="addRow()" 
+					class="btn add-more">
+					<span class="glyphicon glyphicon-plus-sign"></span>
+				</button>
+				<button type="button" ng-hide="{{hideMinus}}"  ng-click="rmRow()" 
+					class="btn add-more">
+					<span class="glyphicon glyphicon-minus-sign"></span>
+				</button>
+				<button type="button" ng-click="savePurchase()"
+					class="btn btn-default">Completa vendita</button>
+				<button type="button" ng-click="clearPurchase()" 
+					class="btn btn-default">Cancella</button>
 			</div>
 		</form>
 		<hr>
 		
 		<!-- Result -->
-		<div ng-include="'include/resultSellTicket.html'"></div>
+		<!-- div ng-include="'include/resultSellTicket.html'"-->
+		<div class="panel panel-default">
+			<div style="overflow-x: scroll;">
+				<table class="table table-hover">
+					<thead style="white-space: nowrap; max-width: none; width: auto;">
+						<tr>
+							<th class="col-sm-2">Data e ora</th>
+							<th class="col-sm-1">Numero Biglietto</th>
+							<th class="col-sm-2">Nome e Cognome</th>
+							<th class="col-sm-1">Tessera n.</th>
+							<th class="col-sm-1">Tipo Biglietto</th>
+							<th class="col-sm-1">Costo in eu</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="ticket in ticketList">
+							<td>{{ticket.date | date:'dd-MMMM-yyyy HH:mm'}}</td>
+							<td>{{ticket.progressiveNumber}}</td>
+							<td>{{ticket.buyerName}}</td>
+							<td>{{ticket.subscription.progressiveNumber}}</td>
+							<td>{{ticket.service.name}}</td>
+							<td>{{ticket.calculatedPrice}}</td>
+						</tr>
+						<tr>
+							<td/><td/><td/><td/><td/><td><b>TOTALE: {{totalAmount}} eu</b></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 		
 	</div>
 

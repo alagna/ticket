@@ -5,6 +5,7 @@ TICKET SERVER release notes
 todo
 ------
 Backend
+- allow to download data in csv format
 - use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
 - better define SmNamingStrategy
 - refine GlobalExceptionHandler
