@@ -31,7 +31,7 @@ public class JsonMarshaller {
 		Subscriber subscriber = new Subscriber("Mario", "Rossi", new Date(), "123", null);
 		Subscription subscription = new Subscription(new Date(), "progressiveNum", subscriber);
 		Service svc = new Service("service name", 12.33);
-		Ticket t = new Ticket(new Date(), "printDay", "progressiveNum", "goofy", subscription, svc);
+		Ticket t = new Ticket(new Date(), "printDay", "progressiveNum", "goofy", 12, subscription, svc);
 		
 		Purchase p = new Purchase(new Date(), 123.33, d, new ArrayList<Ticket>()); 
 		p.getTicketList().add(t);

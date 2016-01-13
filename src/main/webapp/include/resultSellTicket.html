@@ -12,12 +12,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>22/11/2014 15:30</td>
-							<td>12</td>
-							<td>Mario Rossi</td>
-							<td>giornaliero</td>
-							<td>12,00</td>
+						<tr ng-repeat="purchase in purchases">
+							<td>{{purchase.date | date:'dd-MMMM-yyyy HH:mm'}}</td>
+							<td>{{purchase.progressiveNumber}}</td>
+							<td>{{purchase.firstName + " " + purchase.lastName}}</td>
 						</tr>
 					</tbody>
 				</table>

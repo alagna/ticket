@@ -72,6 +72,7 @@ public class TicketServiceImpl implements TicketService {
 			ticket = setProgressiveNumber(ticket);
 			if (service!=null){
 				ticket.setService(service);
+				ticket.setCalculatedPrice(service.getPrice());
 				totalAmount += service.getPrice();
 				ticket.setDate(new Date());
 				ticket.setPrintDay(toString(ticket.getDate()));
@@ -89,6 +90,7 @@ public class TicketServiceImpl implements TicketService {
 							savedSubscription.getSubscriber().getLastName());
 					// TODO apply Discount, instead of calculating it directly
 					totalAmount -= DISCOUNT_FOR_SUBSCRIPTION;
+					ticket.setCalculatedPrice(ticket.getCalculatedPrice()-DISCOUNT_FOR_SUBSCRIPTION);
 				} else {
 					log.error("subscription " + subscription.getId() + " not found: not applied discount");					
 				}

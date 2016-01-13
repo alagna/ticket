@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="listTicketApp">
+<html ng-app="listTicketsApp">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,31 +9,59 @@
 	<script src="./assets/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="./assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="./assets/libs/angularjs/1.3.14/angular.min.js"></script>
-	<script>
-		var ticketApp = angular.module("listTicketApp", []);
-	</script>
+	<script src="./assets/js/listTicketsModule.js"></script>
 	<title>Biglietti: Elenco venduti</title>
 </head>
 
 <body>
-	<div class="container">
+	<div ng-controller="listTicketsCtrl as main" class="container">
 
 		<div ng-include="'include/navbar.html'"></div>
 
 		<!-- Input Form -->
 		<form class="form-inline">
 			<div class="container-fluid">
+				<!-- TODO read input params -->
 				<div class="row form-group">
 					<input type="text" class="form-control" id="startDate" placeholder="Data inizio"> 
 					<input type="text" class="form-control" id="endDate" placeholder="Data fine">
 				</div>
 			</div>
-			<button type="button" class="btn btn-default">Elenca biglietti</button>
+			<button type="button" ng-click="listTickets()" class="btn btn-default">Elenca biglietti</button>
 		</form>
 		<hr>
 		
 		<!-- Result -->
-		<div ng-include="'include/resultSellTicket.html'"></div>
+		<!-- TODO hide if not displayed result -->
+		<div class="panel"><a href="/csv">Scarica i dati in formato csv</a> </div>
+		
+		<!--  div ng-include="'include/resultSellTicket.html'"-->
+		<div class="panel panel-default">
+			<div style="overflow-x: scroll;">
+				<table class="table table-hover">
+					<thead style="white-space: nowrap; max-width: none; width: auto;">
+						<tr>
+							<th class="col-sm-2">Data e ora</th>
+							<th class="col-sm-1">Numero Biglietto</th>
+							<th class="col-sm-2">Nome e Cognome</th>
+							<th class="col-sm-1">Abbonamento n.</th>
+							<th class="col-sm-1">Tipo Biglietto</th>
+							<th class="col-sm-1">Costo in eu</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="ticket in tickets">
+							<td>{{ticket.date | date:'dd-MMMM-yyyy HH:mm'}}</td>
+							<td>{{ticket.progressiveNumber}}</td>
+							<td>{{ticket.buyerName}}</td>
+							<td>{{ticket.subscription.progressiveNumber}}</td>
+							<td>{{ticket.service.name}}</td>
+							<td>{{ticket.calculatedPrice}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 
 	</div> <!-- /container -->

@@ -29,6 +29,8 @@ public class Ticket extends BusinessEntity {
 	private String printDay;
 	private String buyerName;
 	private String progressiveNumber;
+	/** It depends on the service bought and if there's the subscription */
+	private double calculatedPrice;
 
 	@ManyToOne
 	private Subscription subscription;
