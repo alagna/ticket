@@ -4,7 +4,6 @@ TICKET SERVER release notes
 
 todo
 ------
-- add buyerBirthDate
 - complete info on subscription when writing the name of the buyer
 
 Backend
@@ -20,6 +19,8 @@ Frontend
 
 v0.1.0: first angularJS version
 -----------------------------
+- added buyerBirthDate
+
 Backend
 - allow to download data in csv format
 
