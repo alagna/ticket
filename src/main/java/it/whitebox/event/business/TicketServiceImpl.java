@@ -64,12 +64,14 @@ public class TicketServiceImpl implements TicketService {
 		
 		// adding relationship Ticket-Service and calculating the price
 		double totalAmount = 0.0;
+		int currTicket=0;
 		for (Iterator<Ticket> i=purchase.getTicketList().iterator(); i.hasNext();) {
 			// manage ticket
 			Ticket ticket = i.next();
 			it.whitebox.event.business.domain.Service service = 
 				serviceDao.findOne(ticket.getService().getId());
-			ticket = setProgressiveNumber(ticket);
+			ticket = setProgressiveNumber(ticket, currTicket);
+			currTicket+=1;
 			ticket.setId(null);
 			if (service!=null){
 				ticket.setService(service);
@@ -129,10 +131,10 @@ public class TicketServiceImpl implements TicketService {
 	 * @param ticket
 	 * @return
 	 */
-	private Ticket setProgressiveNumber(Ticket ticket) {
+	private Ticket setProgressiveNumber(Ticket ticket, int currTicket) {
 	    Date today = new Date();
 	    String strDate = toString(today);
-		int nTodayTicket = ticketDao.countByPrintDay(strDate)+1;
+		int nTodayTicket = ticketDao.countByPrintDay(strDate)+1+currTicket;
 		
 		String progressiveNumber = strDate+":"+nTodayTicket;
 		ticket.setProgressiveNumber(progressiveNumber);

@@ -3,8 +3,16 @@ var TICKET_API_URL = './api/purchase/list';
 var app = angular.module('listTicketsApp', []);
 
 app.controller('listTicketsCtrl', function($scope,$http) {	
+	var dateToString = function(date){
+		var dd = date.getDate(); 
+		var mm = date.getMonth()+1; 
+		var yyyy = date.getFullYear(); 
+
+		return dd+"/"+mm+"/"+ yyyy;
+	}
+
 	$scope.tickets=[];
-	$scope.startDate=null;
+	$scope.startDate=dateToString(new Date());
 	$scope.endDateDate=null;
 	
 	var toMinus = function(date){
@@ -25,13 +33,6 @@ app.controller('listTicketsCtrl', function($scope,$http) {
 			});	
 	}
 	
-	var dateToString = function(date){
-		var dd = date.getDate(); 
-		var mm = date.getMonth()+1; 
-		var yyyy = date.getFullYear(); 
-
-		return dd+"/"+mm+"/"+ yyyy;
-	}
 	
 	$scope.listTickets = function() {
 		console.log("calling listTickets");
