@@ -16,7 +16,7 @@
 						<tr ng-repeat="newSubscription in subscriptions">
 							<td>{{newSubscription.progressiveNumber}}</td>
 							<td>{{newSubscription.date | date:'dd-MMM-yyyy HH:mm'}}</td>
-							<td>{{newSubscription.subscriber.firstName + " " + newSubscription.subscriber.lastName}}</td>
+							<td>{{newSubscription.subscriber.firstLastName}}</td>
 							<td>{{newSubscription.subscriber.birthDate | date:'dd-MMM-yyyy'}}</td>
 							<td>{{newSubscription.subscriber.telephoneNumber}}</td>
 							<td>{{newSubscription.subscriber.email}}</td>

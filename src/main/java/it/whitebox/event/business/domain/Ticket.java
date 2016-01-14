@@ -28,6 +28,7 @@ public class Ticket extends BusinessEntity {
 	private Date date;
 	private String printDay;
 	private String buyerName;
+	private Date buyerBirthDate;
 	private String progressiveNumber;
 	/** It depends on the service bought and if there's the subscription */
 	private double calculatedPrice;

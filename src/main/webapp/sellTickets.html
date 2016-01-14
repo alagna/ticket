@@ -31,10 +31,12 @@
 						<option value="6">accompagnatore tapis roulant</option>
 						<option value="5">fondo</option>
 					</select> 
-					<input type="text" ng-model="ticket.subscription.progressiveNumber" class="form-control" 
-						id="subscriptionNum" placeholder="Tessera n."> 
 					<input type="text" ng-model="ticket.buyerName" class="form-control" 
 						id="firstLastName" placeholder="Nome e Cognome">
+					<input type="text" ng-model="ticket.buyerBirthDate" class="form-control" 
+						id="buyerBirthDate" placeholder="Data di nascita">
+					<input type="text" ng-model="ticket.subscription.progressiveNumber" class="form-control" 
+						id="subscriptionNum" placeholder="Tessera n."> 
 					
 				</div><!-- row -->
 				
@@ -67,22 +69,24 @@
 							<th class="col-sm-2">Data e ora</th>
 							<th class="col-sm-1">Numero Biglietto</th>
 							<th class="col-sm-2">Nome e Cognome</th>
+							<th class="col-sm-1">Data di nascita</th>
 							<th class="col-sm-1">Tessera n.</th>
 							<th class="col-sm-1">Tipo Biglietto</th>
 							<th class="col-sm-1">Costo in eu</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="ticket in ticketList">
-							<td>{{ticket.date | date:'dd-MMMM-yyyy HH:mm'}}</td>
+						<tr ng-repeat="ticket in resTicketList">
+							<td>{{ticket.date | date:'dd-MMM-yyyy HH:mm'}}</td>
 							<td>{{ticket.progressiveNumber}}</td>
 							<td>{{ticket.buyerName}}</td>
+							<td>{{ticket.buyerBirthDate | date:'dd-MMM-yyyy'}}</td>
 							<td>{{ticket.subscription.progressiveNumber}}</td>
 							<td>{{ticket.service.name}}</td>
 							<td>{{ticket.calculatedPrice}}</td>
 						</tr>
 						<tr>
-							<td/><td/><td/><td/><td/><td><b>TOTALE: {{totalAmount}} eu</b></td>
+							<td/><td/><td/><td/><td/><td><b>TOTALE:</b></td><td><b>{{resTotalAmount}} eu</b></td>
 						</tr>
 					</tbody>
 				</table>

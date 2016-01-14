@@ -25,8 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor @AllArgsConstructor
 public class Subscriber extends BusinessEntity {
 	
-	private String firstName;
-	private String lastName;
+	private String firstLastName;
 	private Date birthDate;
 	private String telephoneNumber;
 	private String email;

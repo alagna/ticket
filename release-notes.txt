@@ -4,8 +4,10 @@ TICKET SERVER release notes
 
 todo
 ------
+- add buyerBirthDate
+- complete info on subscription when writing the name of the buyer
+
 Backend
-- allow to download data in csv format
 - use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
 - better define SmNamingStrategy
 - refine GlobalExceptionHandler
@@ -14,6 +16,13 @@ Backend
 
 Frontend 
 - use timepicker in listTickets.html
+
+
+v0.1.0: first angularJS version
+-----------------------------
+Backend
+- allow to download data in csv format
+
 
 v0.0.1: before angularJS
 -----------------------------

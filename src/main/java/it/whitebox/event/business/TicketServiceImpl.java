@@ -97,12 +97,11 @@ public class TicketServiceImpl implements TicketService {
 					Subscription savedSubscription = savedSubscriptionList.get(0);
 					
 					String subscriberFirstLastName = 
-						savedSubscription.getSubscriber().getFirstName() + " " + savedSubscription.getSubscriber().getLastName();
+						savedSubscription.getSubscriber().getFirstLastName();
 					// subscriber and buyer name matches
 					if (ticket.getBuyerName().toLowerCase().equals(subscriberFirstLastName.toLowerCase())) {
 						ticket.setSubscription(savedSubscription);
-						ticket.setBuyerName(savedSubscription.getSubscriber().getFirstName() + " " +  
-								savedSubscription.getSubscriber().getLastName());
+						ticket.setBuyerName(savedSubscription.getSubscriber().getFirstLastName());
 						applyDiscount=true;
 					}
 				} 

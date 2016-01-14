@@ -4,6 +4,8 @@ var app = angular.module('sellTicketsApp', []);
 
 app.controller('sellTicketsCtrl', function($scope,$http) {	
 	$scope.hideMinus=true;
+	
+	/** input ticketList */
 	$scope.ticketList=[{
 	    "buyerName" : "",
 	    "subscription" : {
@@ -13,7 +15,9 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 	      "id" : 1,
 	    }
 	  }];
-	$scope.totalAmount=0;
+
+	$scope.resTotalAmount=0;
+	$scope.resTicketList=[];
 	
 	/** adds a row of tickets */
 	$scope.addRow = function(){
@@ -40,14 +44,20 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 		var purchase = {date: new Date()}
 		purchase.ticketList = $scope.ticketList.slice();
 		
+		for(i=0; i<purchase.ticketList.length; i++){
+			var ticket = purchase.ticketList[i];
+			var birthDate = new Date(ticket.buyerBirthDate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$3/$2/$1") );
+			ticket.buyerBirthDate = birthDate.getTime();
+		}
+		
 		console.log("saving purchase: " + JSON.stringify(purchase));
 		$http.post(PURCHASE_API_URL, purchase)
 			.success(function(response) {
 				console.log("got as response: " + JSON.stringify(response));
-				$scope.ticketList = response.purchase.ticketList;
-				$scope.totalAmount = response.purchase.totalAmount;
-		});		
-	
+				$scope.resTicketList = response.purchase.ticketList;
+				$scope.resTotalAmount = response.purchase.totalAmount;
+				$scope.clearPurchase();
+		});	
 	};
 	
     $scope.clearPurchase = function() {
@@ -60,7 +70,6 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
     	      "id" : 1,
     	    }
     	  }];
-    	$scope.totalAmount=0;
 	};
 
 });
