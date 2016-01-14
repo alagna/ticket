@@ -38,13 +38,13 @@ public class PurchaseDaoCustomImpl implements PurchaseDaoCustom {
 		String criterion;
 
 		if (startDate!=null) {
-			criterion = " :startDate <= p.date";
+			criterion = " p.date >= :startDate ";
 			Object p[]={"startDate", startDate};
 			lCriteria.add(criterion);
 			lParameters.add(p);
 		}
 		if (endDate!=null) {
-			criterion = " :endDate >= p.date";
+			criterion = " p.date <= :endDate ";
 			Object p[]={"endDate", endDate};
 			lCriteria.add(criterion);
 			lParameters.add(p);

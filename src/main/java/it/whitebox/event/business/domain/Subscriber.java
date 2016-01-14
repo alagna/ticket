@@ -29,6 +29,7 @@ public class Subscriber extends BusinessEntity {
 	private String lastName;
 	private Date birthDate;
 	private String telephoneNumber;
+	private String email;
 	
 	@OneToOne
 	private Subscription subscription;

@@ -118,6 +118,8 @@ public class TicketServiceImpl implements TicketService {
 		}
 		
 		purchase.setTotalAmount(totalAmount);
+
+		System.out.println(purchase);
 		return new CreatePurchaseResponse(purchaseDao.save(purchase));
 	}
 

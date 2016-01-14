@@ -5,15 +5,21 @@
 					<thead style="white-space: nowrap; max-width: none; width: auto;">
 						<tr>
 							<th class="col-sm-1">Numero Tessera</th>
-							<th class="col-sm-1">Data e ora</th>
-							<th class="col-sm-4">Nome e Cognome</th>
+							<th class="col-sm-2">Data e ora</th>
+							<th class="col-sm-2">Nome e Cognome</th>
+							<th class="col-sm-1">Data di nascita</th>
+							<th class="col-sm-1">Telefono</th>
+							<th class="col-sm-2">Email</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="newSubscription in subscriptions">
 							<td>{{newSubscription.progressiveNumber}}</td>
-							<td>{{newSubscription.date | date:'dd-MMMM-yyyy HH:mm'}}</td>
+							<td>{{newSubscription.date | date:'dd-MMM-yyyy HH:mm'}}</td>
 							<td>{{newSubscription.subscriber.firstName + " " + newSubscription.subscriber.lastName}}</td>
+							<td>{{newSubscription.subscriber.birthDate | date:'dd-MMM-yyyy'}}</td>
+							<td>{{newSubscription.subscriber.telephoneNumber}}</td>
+							<td>{{newSubscription.subscriber.email}}</td>
 						</tr>
 					</tbody>
 				</table>

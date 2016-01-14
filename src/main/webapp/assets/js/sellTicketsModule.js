@@ -37,7 +37,7 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 	};
 	
 	$scope.savePurchase = function() {
-		var purchase = {}
+		var purchase = {date: new Date()}
 		purchase.ticketList = $scope.ticketList.slice();
 		
 		console.log("saving purchase: " + JSON.stringify(purchase));

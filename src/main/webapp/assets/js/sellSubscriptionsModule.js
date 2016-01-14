@@ -16,8 +16,11 @@ app.controller('sellSubscriptionsCtrl', function($scope,$http) {
 	};
 	
     $scope.clearSubscription = function(subscription) {
-    	subscription.subscriber.firstName="";
-    	subscription.subscriber.lastName="";
+    	subscription.subscriber.firstName=null;
+    	subscription.subscriber.lastName=null;
+		subscription.subscriber.birthDate=null;
+		subscription.subscriber.telephoneNumber=null;
+		subscription.subscriber.email=null; 
 	};
 
 });
