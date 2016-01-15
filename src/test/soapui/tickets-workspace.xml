@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-workspace name="tickets" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
-  <con:project name="REST service">/Users/alagna/Documents/lavoro/clienti/biznology/progetti/ticket/src/ticket-roo/src/test/soapui/tickets-soapui-project.xml</con:project>
+  <con:project name="REST service">/Users/alagna/Documents/lavoro/clienti/biznology/progetti/ticket/src/ticket-server/src/test/soapui/tickets-soapui-project.xml</con:project>
 </con:soapui-workspace>
