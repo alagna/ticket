@@ -3,7 +3,6 @@ var SUBSCRIPTION_API_URL = './api/subscription/list';
 var app = angular.module('listSubscriptionsApp', []);
 
 app.controller('listSubscriptionsCtrl', function($scope,$http) {	
-	$scope.breadcrump="Tessere: vendita"
 	$scope.subscriptions=[];
 	
 	$scope.listSubscriptions = function() {

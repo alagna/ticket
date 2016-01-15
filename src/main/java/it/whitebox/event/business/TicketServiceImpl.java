@@ -11,15 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.whitebox.event.business.domain.Purchase;
+import it.whitebox.event.business.domain.Subscriber;
 import it.whitebox.event.business.domain.Subscription;
 import it.whitebox.event.business.domain.Ticket;
 import it.whitebox.event.business.result.CreatePurchaseResponse;
 import it.whitebox.event.business.result.CreateSubscriptionResponse;
+import it.whitebox.event.business.result.GetSubscriptionResponse;
 import it.whitebox.event.business.result.ListPurchaseResponse;
 import it.whitebox.event.business.result.ListSubscriptionResponse;
 import it.whitebox.event.integration.db.PurchaseDao;
 import it.whitebox.event.integration.db.PurchaseDaoCustom;
 import it.whitebox.event.integration.db.ServiceDao;
+import it.whitebox.event.integration.db.SubscriberDao;
 import it.whitebox.event.integration.db.SubscriptionDao;
 import it.whitebox.event.integration.db.TicketDao;
 import lombok.Setter;
@@ -53,6 +56,9 @@ public class TicketServiceImpl implements TicketService {
 	@Autowired @Setter
 	private ServiceDao serviceDao;
 
+	@Autowired @Setter
+	private SubscriberDao subscriberDao;
+
 	/**
 	 * Calculates the price of the purchase and save it to the DB
 	 * 
@@ -73,6 +79,7 @@ public class TicketServiceImpl implements TicketService {
 			ticket = setProgressiveNumber(ticket, currTicket);
 			currTicket+=1;
 			ticket.setId(null);
+			ticket.setBuyerName(firstUp(ticket.getBuyerName()));
 			if (service!=null){
 				ticket.setService(service);
 				ticket.setCalculatedPrice(service.getPrice());
@@ -152,13 +159,38 @@ public class TicketServiceImpl implements TicketService {
 		return strDate;
 	}
 
+	/**
+	 * The subscriber name is kept camel case to avoid case problem when doing the search
+	 */
 	@Override
 	public CreateSubscriptionResponse createSubscription(Subscription subscription) {
 		subscription = setProgressiveNumber(subscription);
 		subscription.setDate(new Date());
+		subscription.getSubscriber().setSubscription(subscription);
+		
+		Subscriber subscriber = subscription.getSubscriber();
+		subscriber.setFirstLastName(firstUp(subscriber.getFirstLastName()));
 		return new CreateSubscriptionResponse(subscriptionDao.save(subscription));
 	}
 
+	/**
+	 * Given a string with spaces, converts into upper case the first character of every word
+	 * @param s
+	 * @return
+	 */
+	private String firstUp(String s){
+		s=s.toLowerCase();
+		final StringBuilder result = new StringBuilder(s.length());
+		
+		String[] words = s.split("\\s");
+		for(int i=0,l=words.length;i<l;++i) {
+		  if(i>0) result.append(" ");      
+		  result.append(Character.toUpperCase(words[i].charAt(0)))
+		        .append(words[i].substring(1));
+		}
+		return result.toString();
+	}
+	
 	/**
 	 * Calculates the progressive number (if not already set) and sets it to the subscription
 	 * 
@@ -182,6 +214,17 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public ListSubscriptionResponse listSubscriptions() {
 		return new ListSubscriptionResponse(subscriptionDao.findAll());
+	}
+
+	@Override @Transactional
+	public GetSubscriptionResponse getSubscription(String subscriberFirstLastName) {
+		List<Subscriber> subscriberList = subscriberDao.findByFirstLastName(firstUp(subscriberFirstLastName));
+		
+		GetSubscriptionResponse res = new GetSubscriptionResponse();
+		if (subscriberList.size()>0)
+			res.getSubscriptionList().add(subscriberList.get(0).getSubscription());
+		
+		return res;
 	}
 	
 }

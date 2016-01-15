@@ -39,7 +39,7 @@
 						<option value="5">fondo</option>
 					</select> 
 					<input type="text" ng-model="ticket.buyerName" class="form-control" 
-						id="firstLastName" placeholder="Nome e Cognome">
+						ng-blur="loadFirstLastname(ticket.buyerName, ticket.service.id)" id="firstLastName" placeholder="Nome e Cognome">
 					<input type="text" ng-model="ticket.buyerBirthDate" class="form-control" 
 						id="buyerBirthDate" placeholder="Data di nascita">
 					<input type="text" ng-model="ticket.subscription.progressiveNumber" class="form-control" 

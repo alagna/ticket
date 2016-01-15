@@ -4,7 +4,6 @@ TICKET SERVER release notes
 
 todo
 ------
-- complete info on subscription when writing the name of the buyer
 
 Backend
 - use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
@@ -20,6 +19,7 @@ Frontend
 v0.1.0: first angularJS version
 -----------------------------
 - added buyerBirthDate
+- complete info on subscription when writing the name of the buyer
 
 Backend
 - allow to download data in csv format
