@@ -13,6 +13,7 @@ Backend
 - TicketServiceImpl for Subscription apply Discount, instead of calculating it directly
 
 Frontend 
+- put the html in one only file (loading templates)
 - use timepicker in listTickets.html
 
 
