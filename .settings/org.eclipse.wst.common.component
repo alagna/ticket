@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
-        <property name="context-root" value="currency-exchange"/>
+        <property name="context-root" value="ticket"/>
         <property name="java-output-path" value="/ticket/target/classes"/>
     </wb-module>
 </project-modules>

@@ -164,7 +164,8 @@ public class TicketServiceImpl implements TicketService {
 	 */
 	@Override
 	public CreateSubscriptionResponse createSubscription(Subscription subscription) {
-		subscription = setProgressiveNumber(subscription);
+		if (subscription.getProgressiveNumber()==null) 
+			subscription = setProgressiveNumber(subscription);
 		subscription.setDate(new Date());
 		subscription.getSubscriber().setSubscription(subscription);
 		
