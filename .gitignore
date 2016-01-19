@@ -2,3 +2,4 @@
 mvnw
 bin/database
 *.jar
+*.bak

@@ -4,13 +4,16 @@ TICKET SERVER release notes
 
 todo
 ------
+- compile with java 7
 
 Backend
+- TicketServiceImpl for Subscription apply Discount, instead of calculating it directly
+- implement the Discount concept 
+
 - use org.h2.jdbcx.JdbcConnectionPool instead of BoneCP
 - better define SmNamingStrategy
 - refine GlobalExceptionHandler
 - merge PurchaseDao and PurchaseDaoCustom in one DAO, deriving PurchaseDao from PurchaseDaoCustom
-- TicketServiceImpl for Subscription apply Discount, instead of calculating it directly
 
 Frontend 
 - put the html in one only file (loading templates)
