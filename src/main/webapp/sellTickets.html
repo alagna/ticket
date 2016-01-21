@@ -39,8 +39,11 @@
 						<option value="6">accompagnatore tapis roulant</option>
 						<option value="5">fondo</option>
 					</select> 
-					<input type="text" ng-model="ticket.buyerName" class="form-control" 
-						ng-blur="loadFirstLastname(ticket.buyerName, ticket.service.id)" id="firstLastName" placeholder="Nome e Cognome">
+					<input type="text" ng-model="ticket.firstName" class="form-control"
+						id="firstName" placeholder="Nome">
+					<input type="text" ng-model="ticket.lastName" class="form-control" 
+						ng-blur="loadFirstLastname(ticket.firstName, ticket.lastName, ticket.service.id)" 
+						id="lastName" placeholder="Cognome">
 					<input type="text" ng-model="ticket.buyerBirthDate" class="form-control" 
 						id="buyerBirthDate" placeholder="Data di nascita">
 					<input type="text" ng-model="ticket.subscription.progressiveNumber" class="form-control" 
@@ -55,8 +58,8 @@
 					class="btn add-more">
 					<span class="glyphicon glyphicon-plus-sign"></span>
 				</button>
-				<button type="button" ng-hide="{{hideMinus}}"  ng-click="rmRow()" 
-					class="btn add-more">
+				<button type="button" ng-hide="hideMinus"  ng-click="rmRow()" 
+					class="btn add-more" id="minus-btn">
 					<span class="glyphicon glyphicon-minus-sign"></span>
 				</button>
 				<button type="button" ng-click="savePurchase()"
@@ -102,6 +105,7 @@
 		</div>
 		
 	</div>
+	<div ng-include="'include/footer.html'"></div>
 
 </body>
 </html>

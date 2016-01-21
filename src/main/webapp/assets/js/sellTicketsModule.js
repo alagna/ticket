@@ -49,12 +49,19 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 			$scope.hideMinus=true;
 	};
 	
+	var mergeTicketNames = function(ticket){
+		ticket.buyerName = ticket.firstName.split() + " " + ticket.lastName.split();
+		delete ticket.firstName;
+		delete ticket.lastName;
+	}
+	
 	$scope.savePurchase = function() {
 		var purchase = {date: new Date()}
 		purchase.ticketList = $scope.ticketList.slice();
 		
 		for(i=0; i<purchase.ticketList.length; i++){
 			var ticket = purchase.ticketList[i];
+			mergeTicketNames(ticket);
 			var birthDate = new Date(ticket.buyerBirthDate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$3/$2/$1") );
 			ticket.buyerBirthDate = birthDate.getTime();
 		}
@@ -72,7 +79,8 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 	/**
 	 * Called dynamically when the firstLastName input field loose focus
 	 */
-	$scope.loadFirstLastname = function(subscriberName, serviceId){
+	$scope.loadFirstLastname = function(firstName, lastName, serviceId){
+		var subscriberName = firstName + " " + lastName;
 		console.log("blur firstLastName = " + subscriberName);
 		
 		$http.get(SUBSCRIPTION_API_URL, {params: {subscriberFirstLastName: subscriberName}})
@@ -83,6 +91,8 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 				if (response.subscriptionList.length>0){
 					var subscription = response.subscriptionList[0];
 					var ticket ={
+						firstName: firstName,
+						lastName: lastName,
 						buyerName: subscriberName,
 						buyerBirthDate: dateToString(new Date(subscription.subscriber.birthDate)),
 						subscription: {
