@@ -15,6 +15,6 @@ import it.whitebox.event.business.domain.Subscription;
 public interface SubscriptionDao extends JpaRepository<Subscription, Long>, 
 	JpaSpecificationExecutor<Subscription>{
 
-	public List<Subscription> findByProgressiveNumber(String progressiveNumber);
+	public List<Subscription> findByProgressiveNumber(Long progressiveNumber);
 
 }

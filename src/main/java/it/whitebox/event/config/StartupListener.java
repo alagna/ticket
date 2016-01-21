@@ -14,7 +14,10 @@ import org.springframework.stereotype.Component;
 public class StartupListener implements ApplicationListener<ContextRefreshedEvent> {
 
 	private static final Logger log = Logger.getLogger(StartupListener.class);
-		
+	
+	/**
+	 * End of the application startup. It's the place to put some additional steps
+	 */
 	@Override
 	public void onApplicationEvent(final ContextRefreshedEvent event) {		
 		log.info("=== System startup finished. ===");

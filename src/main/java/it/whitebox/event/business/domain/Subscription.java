@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class Subscription extends BusinessEntity {
 	
 	private Date date;
-	private String progressiveNumber;
+	private Long progressiveNumber;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Subscriber subscriber;

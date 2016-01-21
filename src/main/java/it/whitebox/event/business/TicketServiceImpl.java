@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +27,7 @@ import it.whitebox.event.integration.db.PurchaseDaoCustom;
 import it.whitebox.event.integration.db.ServiceDao;
 import it.whitebox.event.integration.db.SubscriberDao;
 import it.whitebox.event.integration.db.SubscriptionDao;
+import it.whitebox.event.integration.db.SubscriptionDaoCustom;
 import it.whitebox.event.integration.db.TicketDao;
 import lombok.Setter;
 
@@ -34,12 +38,13 @@ import lombok.Setter;
  */
 @Service
 @Transactional
+@Configuration @PropertySource({"classpath:ticket.properties"})
 public class TicketServiceImpl implements TicketService {
 	
 	private static final Logger log = Logger.getLogger(TicketServiceImpl.class.getName());
-	
-	private static final double DISCOUNT_FOR_SUBSCRIPTION = 1;
-	private static final int START_PROGRESSIVE_NUMBER = 100;
+		
+	@Autowired @Setter
+	Environment env;
 	
 	@Autowired @Setter
 	private PurchaseDao purchaseDao;
@@ -52,13 +57,31 @@ public class TicketServiceImpl implements TicketService {
 
 	@Autowired @Setter
 	private SubscriptionDao subscriptionDao;
+	
+	@Autowired @Setter
+	private SubscriptionDaoCustom subscriptionDaoCustom;
 
 	@Autowired @Setter
 	private ServiceDao serviceDao;
 
 	@Autowired @Setter
 	private SubscriberDao subscriberDao;
-
+	
+	/**
+	 * Returns a config property as int
+	 * @param propertyName
+	 * @return
+	 */
+	private int getPropertyAsInt(String propertyName) {
+		String val = env.getProperty(propertyName);
+		try {
+			return Integer.parseInt(val);
+		} catch(NumberFormatException nfe){
+			log.error(propertyName + " " + val + " is not a number");
+			return 1;
+		}
+	}
+	
 	/**
 	 * Calculates the price of the purchase and save it to the DB
 	 * 
@@ -115,8 +138,9 @@ public class TicketServiceImpl implements TicketService {
 				
 				if (applyDiscount) {
 					// TODO apply Discount, instead of calculating it directly
-					totalAmount -= DISCOUNT_FOR_SUBSCRIPTION;
-					ticket.setCalculatedPrice(ticket.getCalculatedPrice()-DISCOUNT_FOR_SUBSCRIPTION);
+					int discount = getPropertyAsInt("subscription.discount");
+					totalAmount -= discount;
+					ticket.setCalculatedPrice(ticket.getCalculatedPrice()-discount);
 				} else {
 					ticket.setSubscription(null);
 					log.error("subscription " + subscription.getProgressiveNumber() + 
@@ -199,22 +223,24 @@ public class TicketServiceImpl implements TicketService {
 	 * @return
 	 */
 	private Subscription setProgressiveNumber(Subscription subscription) {
-		if (subscription.getProgressiveNumber()==null)
-			subscription.setProgressiveNumber((subscriptionDao.count()+START_PROGRESSIVE_NUMBER)+"");
+		if (subscription.getProgressiveNumber()==null) {
+			int start = getPropertyAsInt("subscription.progressiveNumber.start");
+			subscription.setProgressiveNumber(start +
+				subscriptionDaoCustom.countProgressiveNumber(start));
+		}
 		return subscription;
 	}
 
 	@Override
 	public ListPurchaseResponse listPurchases(Date startDate, Date endDate) {
 		
-		List<Purchase> purchaseList = purchaseDaoCustom.findByDate(startDate, endDate);
-		
+		List<Purchase> purchaseList = purchaseDaoCustom.findByDate(startDate, endDate);		
 		return new ListPurchaseResponse(purchaseList);
 	}
 
 	@Override
 	public ListSubscriptionResponse listSubscriptions() {
-		return new ListSubscriptionResponse(subscriptionDao.findAll());
+		return new ListSubscriptionResponse(subscriptionDaoCustom.listSubscriptionsByPN());
 	}
 
 	@Override @Transactional
