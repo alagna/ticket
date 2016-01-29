@@ -20,6 +20,7 @@ import it.whitebox.event.business.domain.Ticket;
 import it.whitebox.event.business.result.CreatePurchaseResponse;
 import it.whitebox.event.business.result.CreateSubscriptionResponse;
 import it.whitebox.event.business.result.GetSubscriptionResponse;
+import it.whitebox.event.business.result.GetTicketsResponse;
 import it.whitebox.event.business.result.ListPurchaseResponse;
 import it.whitebox.event.business.result.ListSubscriptionResponse;
 import it.whitebox.event.integration.db.PurchaseDao;
@@ -243,6 +244,9 @@ public class TicketServiceImpl implements TicketService {
 		return new ListSubscriptionResponse(subscriptionDaoCustom.listSubscriptionsByPN());
 	}
 
+	/**
+	 * Gets a subscription, given the subscriberFirstLastName
+	 */
 	@Override @Transactional
 	public GetSubscriptionResponse getSubscription(String subscriberFirstLastName) {
 		List<Subscriber> subscriberList = subscriberDao.findByFirstLastName(firstUp(subscriberFirstLastName));
@@ -250,6 +254,20 @@ public class TicketServiceImpl implements TicketService {
 		GetSubscriptionResponse res = new GetSubscriptionResponse();
 		if (subscriberList.size()>0)
 			res.getSubscriptionList().add(subscriberList.get(0).getSubscription());
+		
+		return res;
+	}
+	
+	/**
+	 * Returns all the tickets of a buyer
+	 */
+	@Override @Transactional
+	public GetTicketsResponse getTickets(String buyerName) {
+		List<Ticket> ticketList = ticketDao.findByBuyerName(firstUp(buyerName));
+		
+		GetTicketsResponse res = new GetTicketsResponse();
+		if (ticketList.size()>0)
+			res.getTicketList().addAll(ticketList);
 		
 		return res;
 	}

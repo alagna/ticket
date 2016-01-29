@@ -17,6 +17,7 @@ import it.whitebox.event.business.domain.Subscription;
 import it.whitebox.event.business.result.CreatePurchaseResponse;
 import it.whitebox.event.business.result.CreateSubscriptionResponse;
 import it.whitebox.event.business.result.GetSubscriptionResponse;
+import it.whitebox.event.business.result.GetTicketsResponse;
 import it.whitebox.event.business.result.ListPurchaseResponse;
 import it.whitebox.event.business.result.ListSubscriptionResponse;
 import lombok.Setter;
@@ -68,6 +69,12 @@ public class TicketRestServiceImpl {
 	public @ResponseBody ListSubscriptionResponse listSubscriptions(){
 		log.info("listSubscription()");
 		return ticketService.listSubscriptions();
+	}
+	@RequestMapping(value="/api/ticket", method=RequestMethod.GET)
+	public @ResponseBody GetTicketsResponse getTickets(
+			String buyerName){
+		log.info("getTickets(" + buyerName + ")");
+		return ticketService.getTickets(buyerName);
 	}
 
 }

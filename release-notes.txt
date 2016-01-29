@@ -20,6 +20,7 @@ Frontend
 
 v0.2.0: minor improvement
 --------------------------------
+- birth date is searched also in sold tickets (even without subscription)
 - added the total amount of sold tickets
 - compiled with java 7
 

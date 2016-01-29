@@ -1,5 +1,7 @@
 package it.whitebox.event.integration.db;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -15,4 +17,6 @@ public interface TicketDao
 	JpaSpecificationExecutor<Ticket>{
 	
 	public int countByPrintDay(String printDate);
+	public List<Ticket> findByBuyerName(String buyerName);
+
 }

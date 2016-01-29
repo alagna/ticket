@@ -1,5 +1,6 @@
 var PURCHASE_API_URL = './api/purchase';
 var SUBSCRIPTION_API_URL = './api/subscription';
+var TICKET_API_URL = './api/ticket';
 
 var app = angular.module('sellTicketsApp', []);
 
@@ -80,10 +81,10 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 	 * Called dynamically when the firstLastName input field loose focus
 	 */
 	$scope.loadFirstLastname = function(firstName, lastName, serviceId){
-		var subscriberName = firstName + " " + lastName;
-		console.log("blur firstLastName = " + subscriberName);
+		var firstLastName = firstName + " " + lastName;
+		console.log("blur firstLastName = " + firstLastName);
 		
-		$http.get(SUBSCRIPTION_API_URL, {params: {subscriberFirstLastName: subscriberName}})
+		$http.get(SUBSCRIPTION_API_URL, {params: {subscriberFirstLastName: firstLastName}})
 			.success(function(response) {
 				console.log("got as response: " + JSON.stringify(response));
 				
@@ -93,7 +94,7 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 					var ticket ={
 						firstName: firstName,
 						lastName: lastName,
-						buyerName: subscriberName,
+						buyerName: firstLastName,
 						buyerBirthDate: dateToString(new Date(subscription.subscriber.birthDate)),
 						subscription: {
 							progressiveNumber: subscription.progressiveNumber
@@ -104,7 +105,29 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 					}
 					$scope.ticketList.pop();
 					$scope.ticketList.push(ticket);
-				}
+				} 
+				
+				else {
+					// let's try if the buyer has ever bought a ticket
+					$http.get(TICKET_API_URL, {params: {buyerName: firstLastName}})
+					.success(function(response) {
+						console.log("got as response: " + JSON.stringify(response));
+						if (response.ticketList.length>0){
+							var oldTicket = response.ticketList[0];
+							var ticket ={
+								firstName: firstName,
+								lastName: lastName,
+								buyerName: firstLastName,
+								buyerBirthDate: dateToString(new Date(oldTicket.buyerBirthDate)),
+								service :{
+									id: serviceId
+								}
+							}
+							$scope.ticketList.pop();
+							$scope.ticketList.push(ticket);
+						}
+					});
+				}				
 		});	
 	}
 	
