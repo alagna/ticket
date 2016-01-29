@@ -56,12 +56,47 @@ app.controller('sellTicketsCtrl', function($scope,$http) {
 		delete ticket.lastName;
 	}
 	
+	// --- start integration with the ranking webapp ---
+	
+	var RANKING_URL = "http://"+ window.location.host +"/ranking/do"
+	/**
+	 * Function used to integrate with the ranking webapp
+	 */
+	var integrateWithRanking = function(ticket){
+		if (ticket.buyerBibNumber!=null && ticket.buyerSex!=null) {
+			console.log("subscribing " + ticket.buyerName + " to ranking");
+			var nome=ticket.firstName;
+			var cognome=ticket.lastName;
+			var annoDiNascita=ticket.buyerBirthDate.substring(ticket.buyerBirthDate.length-4);
+			var sesso=ticket.buyerSex;
+			var pettorale=ticket.buyerBibNumber;
+			var cmd="create";
+			
+			$http({
+			    method: 'POST',
+			    url: RANKING_URL,
+			    data: $.param({nome: nome, cognome: cognome, annoDiNascita: annoDiNascita, sesso: sesso,
+			    	pettorale: pettorale, cmd: cmd}),
+			    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			})
+			.success(function(response) {
+				console.log("got as response: " +response);
+				window.alert("atleta " + ticket.buyerName + " anche iscritto alla gara");
+			});
+		}
+		delete ticket.buyerBibNumber;
+		delete ticket.buyerSex;
+	}
+	// --- end integration with the ranking webapp ---
+	
+	
 	$scope.savePurchase = function() {
 		var purchase = {date: new Date()}
 		purchase.ticketList = $scope.ticketList.slice();
 		
 		for(i=0; i<purchase.ticketList.length; i++){
 			var ticket = purchase.ticketList[i];
+			integrateWithRanking(ticket);
 			mergeTicketNames(ticket);
 			var birthDate = new Date(ticket.buyerBirthDate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$3/$2/$1") );
 			ticket.buyerBirthDate = birthDate.getTime();

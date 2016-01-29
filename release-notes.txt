@@ -4,6 +4,10 @@ TICKET SERVER release notes
 
 todo
 ------
+- integration with ranking app:
+	- add fields sex and number
+	- if the two fields are filled in, push to the server the following command:
+	nome=Alberto&cognome=Lagna&annoDiNascita=1968&sesso=m&pettorale=13&cmd=create
 
 Backend
 - TicketServiceImpl for Subscription apply Discount, instead of calculating it directly

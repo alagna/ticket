@@ -1,0 +1,37 @@
+11/gen 17:36:42 [    main] WARN  MainApplicationContext:91 WARN: DB re-created: hibernate.hbm2ddl.auto=create
+11/gen 17:36:43 [    main] ERROR SchemaExport:426 HHH000389: Unsuccessful: alter table tckt_t_purchase drop constraint FK9CE792F3D4F5DFDB
+11/gen 17:36:43 [    main] ERROR SchemaExport:427 Table "TCKT_T_PURCHASE" not found; SQL statement:
+
+    alter table tckt_t_purchase 
+        drop constraint FK9CE792F3D4F5DFDB [42102-190]
+11/gen 17:36:43 [    main] ERROR SchemaExport:426 HHH000389: Unsuccessful: alter table tckt_t_purchase_ticket_list drop constraint FK8AF222A5B9358D4D
+11/gen 17:36:43 [    main] ERROR SchemaExport:427 Table "TCKT_T_PURCHASE_TICKET_LIST" not found; SQL statement:
+
+    alter table tckt_t_purchase_ticket_list 
+        drop constraint FK8AF222A5B9358D4D [42102-190]
+11/gen 17:36:43 [    main] ERROR SchemaExport:426 HHH000389: Unsuccessful: alter table tckt_t_purchase_ticket_list drop constraint FK8AF222A55423984F
+11/gen 17:36:43 [    main] ERROR SchemaExport:427 Table "TCKT_T_PURCHASE_TICKET_LIST" not found; SQL statement:
+
+    alter table tckt_t_purchase_ticket_list 
+        drop constraint FK8AF222A55423984F [42102-190]
+11/gen 17:36:43 [    main] ERROR SchemaExport:426 HHH000389: Unsuccessful: alter table tckt_t_subscriber drop constraint FKA6DEA5DA8C755313
+11/gen 17:36:43 [    main] ERROR SchemaExport:427 Table "TCKT_T_SUBSCRIBER" not found; SQL statement:
+
+    alter table tckt_t_subscriber 
+        drop constraint FKA6DEA5DA8C755313 [42102-190]
+11/gen 17:36:43 [    main] ERROR SchemaExport:426 HHH000389: Unsuccessful: alter table tckt_t_subscription drop constraint FK6A989E0F9D949BE9
+11/gen 17:36:43 [    main] ERROR SchemaExport:427 Table "TCKT_T_SUBSCRIPTION" not found; SQL statement:
+
+    alter table tckt_t_subscription 
+        drop constraint FK6A989E0F9D949BE9 [42102-190]
+11/gen 17:36:43 [    main] ERROR SchemaExport:426 HHH000389: Unsuccessful: alter table tckt_t_ticket drop constraint FK7EB5CD7E557208F1
+11/gen 17:36:43 [    main] ERROR SchemaExport:427 Table "TCKT_T_TICKET" not found; SQL statement:
+
+    alter table tckt_t_ticket 
+        drop constraint FK7EB5CD7E557208F1 [42102-190]
+11/gen 17:36:43 [    main] ERROR SchemaExport:426 HHH000389: Unsuccessful: alter table tckt_t_ticket drop constraint FK7EB5CD7E8C755313
+11/gen 17:36:43 [    main] ERROR SchemaExport:427 Table "TCKT_T_TICKET" not found; SQL statement:
+
+    alter table tckt_t_ticket 
+        drop constraint FK7EB5CD7E8C755313 [42102-190]
+11/gen 17:36:43 [    main] INFO  StartupListener:20 === System startup finished. ===

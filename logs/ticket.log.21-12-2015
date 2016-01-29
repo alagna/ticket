@@ -1,0 +1,7 @@
+21/dic 10:40:52 [    main] WARN  MainApplicationContext:91 WARN: DB re-created: hibernate.hbm2ddl.auto=create
+21/dic 10:40:53 [    main] INFO  StartupListener:20 === System startup finished. ===
+21/dic 10:43:05 [    main] WARN  MainApplicationContext:91 WARN: DB re-created: hibernate.hbm2ddl.auto=create
+21/dic 10:43:06 [    main] INFO  StartupListener:20 === System startup finished. ===
+21/dic 11:01:35 [    main] WARN  MainApplicationContext:91 WARN: DB re-created: hibernate.hbm2ddl.auto=create
+21/dic 11:01:36 [    main] INFO  StartupListener:20 === System startup finished. ===
+21/dic 11:02:45 [    main] INFO  StartupListener:20 === System startup finished. ===

@@ -55,6 +55,7 @@
 							<th class="col-sm-2">Data e ora</th>
 							<th class="col-sm-1">Numero Biglietto</th>
 							<th class="col-sm-2">Nome e Cognome</th>
+							<th class="col-sm-2">Data di Nascita</th>
 							<th class="col-sm-1">Abbonamento n.</th>
 							<th class="col-sm-1">Tipo Biglietto</th>
 							<th class="col-sm-1">Costo in eu</th>
@@ -65,12 +66,15 @@
 							<td>{{ticket.date | date:'dd-MMMM-yyyy HH:mm'}}</td>
 							<td>{{ticket.progressiveNumber}}</td>
 							<td>{{ticket.buyerName}}</td>
+							<td>{{ticket.buyerBirthDate | date:'dd-MMMM-yyyy'}}</td>
 							<td>{{ticket.subscription.progressiveNumber}}</td>
 							<td>{{ticket.service.name}}</td>
 							<td>{{ticket.calculatedPrice}}</td>
 						</tr>
 						<tr>
-							<td><b>N. biglietti:</b></td><td><b>{{totalNumber}}</b></td><td></td><td></td>
+							<td><b>N. biglietti:</b></td>
+							<td><b>{{totalNumber}}</b></td>
+							<td></td><td></td><td></td>
 					        <td><b>Totale:</b></td>
 					        <td><b>{{ totalAmount }}</b></td>
 					    </tr>

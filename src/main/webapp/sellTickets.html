@@ -48,6 +48,10 @@
 						id="buyerBirthDate" placeholder="Data di nascita *">
 					<input type="text" ng-model="ticket.subscription.progressiveNumber" class="form-control" 
 						id="subscriptionNum" placeholder="Tessera n."> 
+						
+					<!-- start integration with the ranking webapp -->
+					<div ng-include="'include/ranking.html'"></div>
+					<!-- end integration with the ranking webapp -->
 					
 				</div><!-- row -->
 				
