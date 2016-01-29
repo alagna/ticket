@@ -4,7 +4,6 @@ TICKET SERVER release notes
 
 todo
 ------
-- compile with java 7
 
 Backend
 - TicketServiceImpl for Subscription apply Discount, instead of calculating it directly
@@ -19,9 +18,13 @@ Frontend
 - put the html in one only file (loading templates)
 - use timepicker in listTickets.html
 
+v0.2.0: minor improvement
+--------------------------------
+- added the total amount of sold tickets
+- compiled with java 7
 
 v0.1.0: first angularJS version
------------------------------
+--------------------------------
 - added buyerBirthDate
 - complete info on subscription when writing the name of the buyer
 
