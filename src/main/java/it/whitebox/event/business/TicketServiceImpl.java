@@ -267,7 +267,7 @@ public class TicketServiceImpl implements TicketService {
 		
 		GetTicketsResponse res = new GetTicketsResponse();
 		if (ticketList.size()>0)
-			res.getTicketList().addAll(ticketList);
+			res.getTicketList().add(ticketList.get(ticketList.size()-1));
 		
 		return res;
 	}
